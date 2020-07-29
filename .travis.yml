@@ -8,3 +8,15 @@ before install:
     
 script:
     - docker run -e CI=true ramenator/udemy-docker-flow npm run test
+
+deploy:
+    provider: elasticbeanstalk
+    region: "us-east-2"
+    app: "udemy-docker-flow"
+    env: "UdemyDockerFlow-env"
+    bucket_name: "elasticbeanstalk-us-east-2-530201471495"
+    bucket_path: "udemy-docker-flow"
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
