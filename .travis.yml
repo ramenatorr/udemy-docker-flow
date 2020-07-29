@@ -1,0 +1,10 @@
+language: generic
+sudo: required
+services:
+    - docker
+
+before install:
+    - docker build -t ramenator/udemy-docker-flow -f Dockerfile.dev .
+    
+script:
+    - docker run -e CI=true ramenator/udemy-docker-flow npm run test
